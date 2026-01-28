@@ -63,7 +63,7 @@ services:
   acmeproxy:
     image: ghcr.io/madcamel/acmeproxy.pl
     restart: unless-stopped
-    port: # Or use expose when using a reverse proxy
+    ports: # Or use expose when using a reverse proxy
       - 9443/tcp
     volumes:
       - ./config:/config:rw
