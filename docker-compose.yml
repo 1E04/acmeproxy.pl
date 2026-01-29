@@ -3,10 +3,10 @@ name: "acmeproxy"
 
 services:
   acmeproxy:
-    image: ghcr.io/madcamel/acmeproxy.pl
+    image: ghcr.io/1e04/acmeproxy.pl
     restart: unless-stopped
     ports: # Or use expose when using a reverse proxy
-      - 9443/tcp
+      - 9443:9443
     volumes:
       - ./config:/config:rw
       # Optionally store the generated certificate data on a persistent volume
