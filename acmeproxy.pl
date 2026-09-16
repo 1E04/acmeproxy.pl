@@ -259,7 +259,9 @@ sub acme_cmd ($action, $fqdn, $value) {
   # fqdn and value are passed as positional args ($1, $2) rather than interpolated into
   # the shell string, so they can never be parsed as shell syntax.
   my $func = $dns_provider.'_'.$action;
-  my $script = "source $acme_home/acme.sh >/dev/null 2>&1; " .
+  my $script = "export ACCOUNT_CONF_PATH=\"\$HOME/.acme.sh/account.conf\"; " .
+               "export HTTP_HEADER=\"\$HOME/.acme.sh/http.header\"; " .
+               "source $acme_home/acme.sh >/dev/null 2>&1; " .
                "source $acme_home/dnsapi/$dns_provider.sh; " .
                '"$0" "$1" "$2"';
   logg "executing: $func \"$fqdn\" \"$value\"";
